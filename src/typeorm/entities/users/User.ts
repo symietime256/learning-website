@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-
 import { Role, Language } from './types';
 
 @Entity('users')
