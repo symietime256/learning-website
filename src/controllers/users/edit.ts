@@ -5,7 +5,7 @@ import { getRepository } from 'typeorm';
 
 export const edit = async (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id;
-  const { username, name } = req.body;
+  const { email, username, name, role, language, created_at, updated_at } = req.body;
 
   const userRepository = getRepository(User);
   try {
@@ -18,10 +18,17 @@ export const edit = async (req: Request, res: Response, next: NextFunction) => {
 
     user.username = username;
     user.name = name;
+    user.email = email;
+    user.role = role;
+    user.language = language;
+    user.created_at = created_at;
+    user.updated_at = updated_at;
 
     try {
+      console.log('1');
       await userRepository.save(user);
-      res.customSuccess(200, 'User successfully saved.');
+      // res.customSuccess(200, 'User successfully saved.');
+      res.send(`After changed: ${user}`);
     } catch (err) {
       const customError = new CustomError(409, 'Raw', `User '${user.email}' can't be saved.`, null, err);
       return next(customError);
