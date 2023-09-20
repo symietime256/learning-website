@@ -2,7 +2,7 @@ import { ConnectionOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 const config: ConnectionOptions = {
-  type: 'mysql',
+  type: 'postgres',
   host: process.env.PG_HOST,
   port: Number(process.env.PG_PORT),
   username: process.env.POSTGRES_USER,
@@ -18,6 +18,7 @@ const config: ConnectionOptions = {
     migrationsDir: 'src/typeorm/migrations',
     subscribersDir: 'src/typeorm/subscriber',
   },
+  ssl: true,
   namingStrategy: new SnakeNamingStrategy(),
 };
 
