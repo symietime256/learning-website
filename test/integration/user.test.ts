@@ -20,7 +20,7 @@ describe('Users API', () => {
   adminUser.email = 'brandon.mayhew@test.com';
   adminUser.password = userPassword;
   adminUser.hashPassword();
-  adminUser.role = 'ADMINISTRATOR' as Role;
+  adminUser.role = 'MANAGER' as Role;
 
   let standardUserToken = null;
   const standardUser = new User();
@@ -67,7 +67,7 @@ describe('Users API', () => {
       expect(res.body.error_message).to.equal('Unauthorized - Insufficient user rights');
       expect(res.body.errors).to.eql([
         'Unauthorized - Insufficient user rights',
-        'Current role: STANDARD. Required role: ADMINISTRATOR',
+        'Current role: STANDARD. Required role: MANAGER',
       ]);
       expect(res.body.error_raw).to.an('null');
       expect(res.body.errors_validation).to.an('null');

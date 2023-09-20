@@ -2,6 +2,11 @@ import bcrypt from 'bcryptjs';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Role, Language } from './types';
 
+enum UserRole {
+  EMPLOYEE = 'EMPLOYEE',
+  HR = 'HR',
+  MANAGER = 'MANAGER',
+}
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
@@ -27,8 +32,9 @@ export class User {
   name: string;
 
   @Column({
-    default: 'STANDARD' as Role,
-    length: 30,
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.EMPLOYEE,
   })
   role: string;
 
@@ -37,6 +43,17 @@ export class User {
     length: 15,
   })
   language: string;
+
+  @Column({
+    unique: true,
+    nullable: true,
+  })
+  phoneNumber: string;
+
+  @Column({
+    nullable: true,
+  })
+  address: string;
 
   @Column()
   @CreateDateColumn()

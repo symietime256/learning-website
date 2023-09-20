@@ -19,7 +19,7 @@ describe('POST /v1/login', () => {
   user.email = 'brandon.mayhew@test.com';
   user.password = userPassword;
   user.hashPassword();
-  user.role = 'ADMINISTRATOR' as Role;
+  user.role = 'MANAGER' as Role;
 
   before(async () => {
     dbConnection = await dbCreateConnection();
