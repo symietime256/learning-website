@@ -1,4 +1,4 @@
-import { Role } from '@/typeorm/entities/users/types';
+import { ROLE_TYPE } from '@/typeorm/entities/users/types';
 import { User } from '@/typeorm/entities/users/User';
 import { JwtPayload } from '@/types/JwtPayload';
 import { createJwtToken } from '@/utils/createJwtToken';
@@ -27,7 +27,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role as Role,
+      role: user.role as ROLE_TYPE,
       created_at: user.created_at,
     };
 

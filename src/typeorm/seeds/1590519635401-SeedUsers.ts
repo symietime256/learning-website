@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, getRepository } from 'typeorm';
 
-import { Role } from '../entities/users/types';
+import { ROLE_TYPE } from '../entities/users/types';
 import { User } from '../entities/users/User';
 
 export class SeedUsers1590519635401 implements MigrationInterface {
@@ -13,7 +13,7 @@ export class SeedUsers1590519635401 implements MigrationInterface {
     user.email = 'admin@admin.com';
     user.password = 'pass1';
     user.hashPassword();
-    user.role = 'MANAGER' as Role;
+    user.role = 'MANAGER' as ROLE_TYPE;
     await userRepository.save(user);
 
     user = new User();
@@ -22,7 +22,7 @@ export class SeedUsers1590519635401 implements MigrationInterface {
     user.email = 'standard@standard.com';
     user.password = 'pass1';
     user.hashPassword();
-    user.role = 'STANDARD' as Role;
+    user.role = 'STANDARD' as ROLE_TYPE;
     await userRepository.save(user);
 
     user = new User();

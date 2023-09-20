@@ -1,12 +1,8 @@
+import { ROLE_TYPE } from '@/typeorm/entities/users/types';
 import bcrypt from 'bcryptjs';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { Role, Language } from './types';
+import { Language } from './types';
 
-enum UserRole {
-  EMPLOYEE = 'EMPLOYEE',
-  HR = 'HR',
-  MANAGER = 'MANAGER',
-}
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
@@ -32,9 +28,8 @@ export class User {
   name: string;
 
   @Column({
-    type: 'enum',
-    enum: UserRole,
-    default: UserRole.EMPLOYEE,
+    enum: ROLE_TYPE,
+    default: ROLE_TYPE.EMPLOYEE,
   })
   role: string;
 
