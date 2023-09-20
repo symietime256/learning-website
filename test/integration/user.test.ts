@@ -5,7 +5,7 @@ import { getRepository, Connection, Repository } from 'typeorm';
 
 import { app } from '../../src/index';
 import { dbCreateConnection } from '../../src/typeorm/dbCreateConnection';
-import { Role } from '../../src/@/typeorm/entities/users/types';
+import { ROLE_TYPE } from '../../src/@/typeorm/entities/users/types';
 import { User } from '../../src/@/typeorm/entities/users/User';
 
 describe('Users API', () => {
@@ -20,7 +20,7 @@ describe('Users API', () => {
   adminUser.email = 'brandon.mayhew@test.com';
   adminUser.password = userPassword;
   adminUser.hashPassword();
-  adminUser.role = 'MANAGER' as Role;
+  adminUser.role = 'MANAGER' as ROLE_TYPE;
 
   let standardUserToken = null;
   const standardUser = new User();
@@ -29,7 +29,7 @@ describe('Users API', () => {
   standardUser.email = 'todd.alquist@test.com';
   standardUser.password = userPassword;
   standardUser.hashPassword();
-  standardUser.role = 'STANDARD' as Role;
+  standardUser.role = 'STANDARD' as ROLE_TYPE;
 
   before(async () => {
     dbConnection = await dbCreateConnection();

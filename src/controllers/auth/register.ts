@@ -1,3 +1,6 @@
+import { ROLE_TYPE } from '@/typeorm/entities/users/types';
+import { JwtPayload } from '@/types/JwtPayload';
+import { createJwtToken } from '@/utils/createJwtToken';
 import { User } from '@/typeorm/entities/users/User';
 import { CustomError } from '@/utils/response/custom-error/CustomError';
 import { Request, Response, NextFunction } from 'express';
@@ -24,6 +27,16 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       newUser.password = password;
       newUser.hashPassword();
       await userRepository.save(newUser);
+
+      const tokenPayload: JwtPayload = {
+        id: newUser.id,
+        email: newUser.email,
+        name: newUser.name,
+        role: newUser.role as ROLE_TYPE,
+        created_at: new Date(),
+      };
+      const accessToken = createJwtToken(tokenPayload);
+      res.send({ newUser, accessToken });
 
       res.customSuccess(200, 'User successfully created.');
     } catch (err) {
