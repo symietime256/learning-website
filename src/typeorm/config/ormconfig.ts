@@ -1,14 +1,34 @@
 import { ConnectionOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
+// const config: ConnectionOptions = {
+//   type: 'mysql',
+//   host: process.env.PG_HOST,
+//   port: Number(process.env.PG_PORT),
+//   username: process.env.POSTGRES_USER,
+//   password: process.env.POSTGRES_PASSWORD,
+//   database: process.env.POSTGRES_DB,
+//   synchronize: false,
+//   logging: false,
+//   entities: ['src/typeorm/entities/**/*.ts'],
+//   migrations: ['src/typeorm/migrations/**/*.ts'],
+//   subscribers: ['src/typeorm/subscriber/**/*.ts'],
+//   cli: {
+//     entitiesDir: 'src/typeorm/entities',
+//     migrationsDir: 'src/typeorm/migrations',
+//     subscribersDir: 'src/typeorm/subscriber',
+//   },
+//   namingStrategy: new SnakeNamingStrategy(),
+// };
+
 const config: ConnectionOptions = {
   type: 'postgres',
-  host: process.env.PG_HOST,
-  port: Number(process.env.PG_PORT),
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
-  synchronize: false,
+  host: 'ep-withered-disk-04414145.us-east-2.aws.neon.tech',
+  port: 5432,
+  username: 'vuquyet808',
+  password: 'qobQPUZgf83L',
+  database: 'neondb',
+  synchronize: true,
   logging: false,
   entities: ['src/typeorm/entities/**/*.ts'],
   migrations: ['src/typeorm/migrations/**/*.ts'],
@@ -19,6 +39,7 @@ const config: ConnectionOptions = {
     subscribersDir: 'src/typeorm/subscriber',
   },
   namingStrategy: new SnakeNamingStrategy(),
+  ssl: true,
 };
 
-export = config;
+export default config;

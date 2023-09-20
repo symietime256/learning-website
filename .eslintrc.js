@@ -6,6 +6,12 @@ module.exports = {
   plugins: ['@typescript-eslint', 'import'],
 
   rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     // General
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
@@ -15,17 +21,17 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 0,
 
     // Import
-    'import/order': [
-      'error',
-      {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling'],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-      },
-    ],
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     groups: ['builtin', 'external', 'internal', 'parent', 'sibling'],
+    //     'newlines-between': 'always',
+    //     alphabetize: {
+    //       order: 'asc',
+    //       caseInsensitive: true,
+    //     },
+    //   },
+    // ],
   },
 
   parserOptions: {
@@ -41,4 +47,10 @@ module.exports = {
       },
     },
   },
+  // 'prettier/prettier': [
+  //   'error',
+  //   {
+  //     endOfLine: 'auto',
+  //   },
+  // ],
 };

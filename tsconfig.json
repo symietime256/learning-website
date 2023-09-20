@@ -13,7 +13,11 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "typeRoots": ["./src/types", "./node_modules/@types"],
-    "baseUrl": "src/",
+    // "baseUrl": "src/",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
