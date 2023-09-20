@@ -4,13 +4,12 @@ import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
-  console.log('1111zxxxx');
   const { email, password } = req.body;
 
   const userRepository = getRepository(User);
   try {
     const user = await userRepository.findOne({ where: { email } });
-    console.log('🚀 ~ file: register.ts:13 ~ register ~ user:', user);
+    console.log('user:', user);
 
     if (user) {
       const customError = new CustomError(400, 'General', 'User already exists', [
@@ -28,7 +27,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
       res.customSuccess(200, 'User successfully created.');
     } catch (err) {
-      console.log('🚀 ~ file: register.ts:31 ~ register ~ err:', err);
+      console.log('err:', err);
       const customError = new CustomError(400, 'Raw', `User '${email}' can't be created`, null, err);
       return next(customError);
     }

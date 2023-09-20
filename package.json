@@ -6,7 +6,7 @@
     "@": "dist"
   },
   "scripts": {
-    "dev": "ts-node -r tsconfig-paths/register ./src/index.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register ./src/index.ts",
     "build": "rimraf dist && tsc",
     "start": "NODE_PATH=./dist node ./dist/index.js",
     "prepare": "husky install",
