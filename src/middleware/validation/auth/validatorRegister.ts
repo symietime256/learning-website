@@ -40,7 +40,8 @@ export const validatorRegister = (req: Request, res: Response, next: NextFunctio
 
   if (errorsValidation.length !== 0) {
     const customError = new CustomError(400, 'Validation', 'Register validation error', null, null, errorsValidation);
-    return next(customError);
+    console.log('🚀 ~ file: validatorRegister.ts:43 ~ validatorRegister ~ customError:', customError);
+    throw customError;
   }
   return next();
 };

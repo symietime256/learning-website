@@ -5,16 +5,22 @@ import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 
 export const validatorEdit = async (req: Request, res: Response, next: NextFunction) => {
-  let { username, name } = req.body;
+  let { email, username } = req.body;
   const errorsValidation: ErrorValidation[] = [];
   const userRepository = getRepository(User);
 
+  email = !email ? '' : email;
   username = !username ? '' : username;
-  name = !name ? '' : name;
 
-  const user = await userRepository.findOne({ username });
+  let user = await userRepository.findOne({ username });
   if (user) {
     errorsValidation.push({ username: `Username '${username}' already exists` });
+  }
+
+  user = await userRepository.findOne({ email });
+
+  if (user) {
+    errorsValidation.push({ username: `Email '${email}' already exists` });
   }
 
   if (errorsValidation.length !== 0) {
