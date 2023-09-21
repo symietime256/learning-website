@@ -10,10 +10,6 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
   const { email, password } = req.body;
   const userRepository = getRepository(User);
 
-  if (!req.jwtPayload || req.jwtPayload.role !== 'HR') {
-    const customError = new CustomError(403, 'General', 'HR role required for registration');
-    return next(customError);
-  }
   try {
     const user = await userRepository.findOne({ where: { email } });
     console.log('user:', user);
