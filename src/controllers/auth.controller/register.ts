@@ -8,8 +8,8 @@ import { getRepository } from 'typeorm';
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
-
   const userRepository = getRepository(User);
+
   try {
     const user = await userRepository.findOne({ where: { email } });
     console.log('user:', user);
@@ -20,7 +20,6 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       ]);
       return next(customError);
     }
-
     try {
       const newUser = new User();
       newUser.email = email;

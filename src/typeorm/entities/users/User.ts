@@ -1,8 +1,8 @@
 import { ROLE_TYPE } from '@/typeorm/entities/users/types';
 import bcrypt from 'bcryptjs';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Language } from './types';
-
+import { Request } from './request';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
@@ -57,6 +57,9 @@ export class User {
   @Column()
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => Request, (request) => request.user)
+  requests: Request[];
 
   setLanguage(language: Language) {
     this.language = language;

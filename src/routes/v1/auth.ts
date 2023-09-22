@@ -7,7 +7,7 @@ import { Router } from 'express';
 const router = Router();
 
 router.post('/login', [validatorLogin], login);
-router.post('/register', [validatorRegister], register);
+router.post('/register', [checkJwt], [validatorRegister], register);
 router.post('/change-password', [checkJwt, validatorChangePassword], changePassword);
 
 export default router;
