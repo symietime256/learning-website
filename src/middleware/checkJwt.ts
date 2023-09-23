@@ -22,19 +22,6 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
     const customError = new CustomError(401, 'Raw', 'JWT error', null, err);
     return next(customError);
   }
-  // const token = req.headers.token;
-  // if (token) {
-  //   const accessToken = token.split(' ')[1];
-  //   jwt.verify(accessToken, process.env.JWT_ACCESS_KEY, (err, user) => {
-  //     if (err) {
-  //       res.status(403).json('Token is not valid');
-  //     }
-  //     req.user = user;
-  //     next();
-  //   });
-  // } else {
-  //   res.status(401).json("You're not authenticated");
-  // }
 
   try {
     // Refresh and send a new token on every request

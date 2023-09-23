@@ -22,10 +22,14 @@ export class Request {
   @Column()
   request_date: Date;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   is_accepted: ABSENT_REQUEST;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   approved_date: Date;
 
   @ManyToOne(() => User, (user) => user.requests)
