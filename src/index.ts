@@ -3,7 +3,6 @@ import 'reflect-metadata';
 import fs from 'fs';
 import path from 'path';
 
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -18,8 +17,8 @@ import { dbCreateConnection } from './typeorm/dbCreateConnection';
 export const app = express();
 app.use(cors());
 app.use(helmet());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(getLanguage);
 
 try {

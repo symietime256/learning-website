@@ -1,5 +1,5 @@
 // import { login, changePassword, register } from 'controllers/auth';
-import { login, changePassword, register } from '@/controllers/auth';
+import { login, changePassword, register } from '@/controllers/auth.controller';
 import { checkJwt } from '@/middleware/checkJwt';
 import { checkRole } from '@/middleware/checkRole';
 import { validatorLogin, validatorRegister, validatorChangePassword } from '@/middleware/validation/auth';

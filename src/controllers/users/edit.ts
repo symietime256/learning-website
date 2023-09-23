@@ -25,9 +25,8 @@ export const edit = async (req: Request, res: Response, next: NextFunction) => {
     user.updated_at = updated_at;
 
     try {
-      console.log('1');
       await userRepository.save(user);
-      // res.customSuccess(200, 'User successfully saved.');
+      res.customSuccess(200, 'User successfully saved.');
       res.send(`After changed: ${user}`);
     } catch (err) {
       const customError = new CustomError(409, 'Raw', `User '${user.email}' can't be saved.`, null, err);
