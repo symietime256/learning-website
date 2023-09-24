@@ -1,37 +1,38 @@
-import { PrimaryColumn, Entity, Column, ManyToOne } from 'typeorm';
-import { ABSENT_REQUEST } from './types';
-import { User } from './User';
+// import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+// import { Language } from './types';
 
-@Entity('absent-request')
-export class Request {
-  @PrimaryColumn()
-  id: number;
+// @Entity('absent_request')
+// export class Request {
+//   @PrimaryGeneratedColumn()
+//   id: number;
 
-  @Column()
-  username: string;
+//   @Column()
+//   userId: string;
 
-  @Column()
-  main_point: string;
+//   @Column()
+//   password: string;
 
-  @Column()
-  date_of_absence: Date;
+//   @Column({
+//     nullable: true,
+//     unique: true,
+//   })
+//   username: string;
 
-  @Column()
-  reason: string;
+//   @Column({
+//     nullable: true,
+//   })
+//   name: string;
 
-  @Column()
-  request_date: Date;
+//   @Column({
+//     default: 'en-US' as Language,
+//     length: 15,
+//   })
+//   language: string;
 
-  @Column({
-    nullable: true,
-  })
-  is_accepted: ABSENT_REQUEST;
+//   @Column({
+//     unique: true,
+//     nullable: true,
+//   })
+//   phoneNumber: string;
 
-  @Column({
-    nullable: true,
-  })
-  approved_date: Date;
-
-  @ManyToOne(() => User, (user) => user.requests)
-  user: User;
-}
+// }
