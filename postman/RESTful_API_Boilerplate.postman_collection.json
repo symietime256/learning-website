@@ -278,6 +278,7 @@
           },
           "response": []
         },
+
         {
           "name": "/:id",
           "request": {
@@ -353,6 +354,48 @@
               "raw": "{{baseUrl}}/users/5",
               "host": ["{{baseUrl}}"],
               "path": ["users", "5"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "/request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept-Language",
+                "type": "text",
+                "value": "sl-SI"
+              },
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "{{token}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "main_point": "leave for school day",
+                  "date_of_absence": "2023/09/25",
+                  "reason": "the reason that i'm absent today is related to the exam in the school that caused upset to everybody, because this is the most important examination in a year",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/request",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "request"]
             }
           },
           "response": []
