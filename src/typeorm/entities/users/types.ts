@@ -9,5 +9,9 @@ export enum ABSENT_REQUEST {
   NO = 'NO',
   YES = 'YES',
 }
+export enum DEVICE_STATUS {
+  AVAILABLE = 'AVAILABLE',
+  BORROWED = 'BORROWED',
+}
 
 export type Language = 'en-US' | 'sl-SI';
