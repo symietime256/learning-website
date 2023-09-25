@@ -6,12 +6,17 @@ export enum ROLE_TYPE {
 
 export enum ABSENT_REQUEST {
   PENDING = 'PENDING',
-  NO = 'NO',
-  YES = 'YES',
+  REJECTED = 'REJECTED',
+  APPROVED = 'APPROVED',
 }
 export enum DEVICE_STATUS {
   AVAILABLE = 'AVAILABLE',
   BORROWED = 'BORROWED',
 }
 
-export type Language = 'en-US' | 'sl-SI';
+export type Language = `${Languages}`;
+
+enum Languages {
+  En = 'en-US',
+  Sl = 'sl-SL',
+}
