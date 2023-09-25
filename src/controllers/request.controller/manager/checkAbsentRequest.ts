@@ -10,18 +10,18 @@ export const checkAbsentRequest = async (req: Request, res: Response, next: Next
   console.log(queryId);
 
   try {
-    const absentRequestLists = requestViewWithIdFilter(queryId);
+    const absentRequestLists = await requestViewWithIdFilter(queryId);
     console.log(absentRequestLists);
 
     // const absentRequestLists1 = await absentRequestRepository.find({
     //   // relations: {
     //   //   users: true,
     //   // },
-    //   where: {
-    //     user: {
-    //       id: 18,
-    //     },
+    // where: {
+    //   user: {
+    //     id: 18,
     //   },
+    // },
     // });
     res.customSuccess(200, 'List of absent requests', absentRequestLists);
   } catch (err) {
