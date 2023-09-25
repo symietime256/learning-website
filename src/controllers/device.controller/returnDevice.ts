@@ -5,12 +5,8 @@ import { getRepository } from 'typeorm';
 
 export const returnDevice = async (req: Request, res: Response) => {
   const deviceRepository = getRepository(Device);
-  const id = req.body.id;
+  const device = req.device;
   try {
-    const device = await deviceRepository.findOne(id);
-    if (!device) {
-      return res.status(404).json('Device Not Found');
-    }
     device.device_status = DEVICE_STATUS.AVAILABLE;
     device.quantity += 1;
     await deviceRepository.save(device);
