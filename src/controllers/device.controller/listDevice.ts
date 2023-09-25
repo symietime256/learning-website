@@ -6,7 +6,7 @@ export const listDevice = async (req: Request, res: Response) => {
   const deviceRepository = getRepository(Device);
   try {
     const devices = await deviceRepository.find({
-      select: ['id', 'name_device', 'device_status', 'dateOfIssue', 'user'],
+      select: ['id', 'name_device', 'device_status', 'description', 'quantity'],
     });
     res.customSuccess(200, 'List of devices', devices);
   } catch (err) {

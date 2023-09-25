@@ -11,7 +11,7 @@ export enum ABSENT_REQUEST {
 }
 export enum DEVICE_STATUS {
   AVAILABLE = 'AVAILABLE',
-  BORROWED = 'BORROWED',
+  UNAVAILABLE = 'UNAVAILABLE',
 }
 
 export type Language = `${Languages}`;

@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { DEVICE_STATUS } from './types';
 
-@Entity('device')
+@Entity('Device')
 export class Device {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -18,10 +18,10 @@ export class Device {
   @Column({
     nullable: true,
   })
-  dateOfIssue: Date;
+  description: string;
 
   @Column({
     nullable: true,
   })
-  user: string;
+  quantity: number;
 }

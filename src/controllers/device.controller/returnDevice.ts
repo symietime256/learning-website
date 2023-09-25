@@ -3,7 +3,7 @@ import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
-export const borrow = async (req: Request, res: Response) => {
+export const returnDevice = async (req: Request, res: Response) => {
   const deviceRepository = getRepository(Device);
   const id = req.body.id;
   try {
@@ -11,12 +11,10 @@ export const borrow = async (req: Request, res: Response) => {
     if (!device) {
       return res.status(404).json('Device Not Found');
     }
-    if (device.device_status === DEVICE_STATUS.BORROWED) {
-      return res.status(400).json('Device is already borrowed');
-    }
-    device.device_status = DEVICE_STATUS.BORROWED;
+    device.device_status = DEVICE_STATUS.AVAILABLE;
+    device.quantity += 1;
     await deviceRepository.save(device);
-    return res.status(200).json('Device borrowed succesfully');
+    return res.status(200).json('Device returned successfully');
   } catch (err) {
     return res.status(500).json(err);
   }

@@ -2,7 +2,6 @@ import { ROLE_TYPE } from '@/typeorm/entities/users/types';
 import bcrypt from 'bcryptjs';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Language } from './types';
-// import { Request } from './request';
 import { AbsentRequest } from './AbsentRequest';
 @Entity('users')
 export class User {
