@@ -8,9 +8,6 @@ export class AbsentRequest {
   id: number;
 
   @Column()
-  username: string;
-
-  @Column()
   main_point: string;
 
   @Column()
