@@ -1,16 +1,15 @@
-import { ConstsUser } from '@/consts/ConstsUser';
+import { VALIDATE } from '@/constants/validateConstants';
 import { CustomError } from '@/utils/response/custom-error/CustomError';
 import { ErrorValidation } from '@/utils/response/custom-error/types';
 import { Request, Response, NextFunction } from 'express';
 import validator from 'validator';
+import { checkFalsy } from './validatorFalsy';
 
 export const validatorChangePassword = (req: Request, res: Response, next: NextFunction) => {
-  let { password, passwordNew, passwordConfirm } = req.body;
+  const { password, passwordNew, passwordConfirm } = req.body;
   const errorsValidation: ErrorValidation[] = [];
 
-  password = !password ? '' : password;
-  passwordNew = !passwordNew ? '' : passwordNew;
-  passwordConfirm = !passwordConfirm ? '' : passwordConfirm;
+  checkFalsy({ password, passwordNew, passwordConfirm });
 
   if (validator.isEmpty(password)) {
     errorsValidation.push({ password: 'Password is required' });
@@ -24,9 +23,9 @@ export const validatorChangePassword = (req: Request, res: Response, next: NextF
     errorsValidation.push({ passwordConfirm: 'Password confirm is required' });
   }
 
-  if (!validator.isLength(passwordNew, { min: ConstsUser.PASSWORD_MIN_CHAR })) {
+  if (!validator.isLength(passwordNew, { min: VALIDATE.PASSWORD.PASSWORD_MIN_CHAR })) {
     errorsValidation.push({
-      passwordNew: `Password must be at least ${ConstsUser.PASSWORD_MIN_CHAR} characters`,
+      passwordNew: `Password must be at least ${VALIDATE.PASSWORD.PASSWORD_MIN_CHAR} characters`,
     });
   }
 

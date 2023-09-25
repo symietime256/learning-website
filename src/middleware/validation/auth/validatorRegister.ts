@@ -1,4 +1,4 @@
-import { ConstsUser } from '@/consts/ConstsUser';
+import { VALIDATE } from '@/constants/validateConstants';
 import { CustomError } from '@/utils/response/custom-error/CustomError';
 import { ErrorValidation } from '@/utils/response/custom-error/types';
 import { Request, Response, NextFunction } from 'express';
@@ -24,9 +24,9 @@ export const validatorRegister = (req: Request, res: Response, next: NextFunctio
     errorsValidation.push({ password: 'Password is required' });
   }
 
-  if (!validator.isLength(password, { min: ConstsUser.PASSWORD_MIN_CHAR })) {
+  if (!validator.isLength(password, { min: VALIDATE.PASSWORD.PASSWORD_MIN_CHAR })) {
     errorsValidation.push({
-      password: `Password must be at least ${ConstsUser.PASSWORD_MIN_CHAR} characters`,
+      password: `Password must be at least ${VALIDATE.PASSWORD.PASSWORD_MIN_CHAR} characters`,
     });
   }
 
