@@ -1,0 +1,15 @@
+import { Device } from '@/typeorm/entities/users/device';
+import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
+
+export const listDevice = async (req: Request, res: Response) => {
+  const deviceRepository = getRepository(Device);
+  try {
+    const devices = await deviceRepository.find({
+      select: ['id', 'name_device', 'device_status', 'dateOfIssue', 'user'],
+    });
+    res.customSuccess(200, 'List of devices', devices);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};

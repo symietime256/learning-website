@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
-import { addDevice } from '@/controllers/device.controller/addDevice';
+import { addDevice, borrow, listDevice } from '@/controllers/device.controller';
 
 const router = Router();
 
 router.post('/add', addDevice);
-
+router.get('/', listDevice);
+router.post('/borrow', borrow);
 export default router;

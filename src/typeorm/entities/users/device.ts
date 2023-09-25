@@ -4,7 +4,7 @@ import { DEVICE_STATUS } from './types';
 @Entity('device')
 export class Device {
   @PrimaryGeneratedColumn('uuid')
-  device_code: string;
+  id: string;
 
   @Column()
   name_device: string;
