@@ -7,4 +7,5 @@ export const checkIfRequestIsAcceptedOrNot = async (requestFind: AbsentRequest) 
   if (requestFind.is_accepted == ABSENT_REQUEST.APPROVED || requestFind.is_accepted == ABSENT_REQUEST.REJECTED) {
     return true;
   }
+  return false;
 };

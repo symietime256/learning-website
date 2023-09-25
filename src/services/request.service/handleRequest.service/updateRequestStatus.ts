@@ -1,7 +1,6 @@
-import { JwtPayload } from '@/types/JwtPayload';
 import { getRepository } from 'typeorm';
 import { AbsentRequest } from '@/typeorm/entities/users/AbsentRequest';
-import { VALIDATE } from '@/constants/validateConstants';
+import { REQUEST_VALIDATE } from '@/constants/validateConstants';
 import { CustomError } from '@/utils/response/custom-error/CustomError';
 
 export const updateRequestStatus = async (managerName, is_accepted, id, requestFind) => {
@@ -11,9 +10,10 @@ export const updateRequestStatus = async (managerName, is_accepted, id, requestF
     await absentRequestRepository.update(id, {
       is_accepted: is_accepted,
       approved_by: managerName,
-      approved_date: VALIDATE.DATE.CURRENT_TIME,
+      approved_date: REQUEST_VALIDATE.DATE.CURRENT_TIME,
     });
     requestFind = await absentRequestRepository.findOne({ where: { id } });
+    return requestFind;
   } catch (err) {
     const customError = new CustomError(
       409,
@@ -22,5 +22,7 @@ export const updateRequestStatus = async (managerName, is_accepted, id, requestF
       null,
       err,
     );
+    return customError;
   }
+  return true;
 };
