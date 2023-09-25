@@ -59,7 +59,7 @@ export class User {
   updated_at: Date;
 
   @OneToMany(() => AbsentRequest, (request) => request.user)
-  requests: Request[];
+  requests: AbsentRequest[];
 
   setLanguage(language: Language) {
     this.language = language;
