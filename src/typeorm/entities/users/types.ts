@@ -14,6 +14,8 @@ export enum DEVICE_STATUS {
   BORROWED = 'BORROWED',
 }
 
+export type Language = `${Languages}`;
+
 enum Languages {
   En = 'en-US',
   Sl = 'sl-SL',
