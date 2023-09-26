@@ -10,6 +10,6 @@ router.use('/auth', auth);
 router.use('/users', users);
 router.use('/devices', device);
 
-router.use('/request', request);
+router.use('/absent-request', request);
 
 export default router;
