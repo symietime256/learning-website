@@ -10,8 +10,11 @@ export class AbsentRequest {
   @Column()
   main_point: string;
 
-  @Column()
-  date_of_absence: Date;
+  @Column({ default: null, nullable: true })
+  date_of_absence_begin: Date;
+
+  @Column({ default: null, nullable: true })
+  date_of_absence_end: Date;
 
   @Column()
   reason: string;

@@ -23,8 +23,12 @@ export const validatorRequest = async (req: Request, res: Response, next: NextFu
     errorsValidation.push({ main_point: REQUEST_VALIDATE.CONTENT.MAIN_POINT_EMPTY });
   }
 
-  if (validator.isEmpty(absentRequestBody.date_of_absence)) {
-    errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.CONTENT.DATE_OF_ABSENCE_EMPTY });
+  if (validator.isEmpty(absentRequestBody.date_of_absence_begin)) {
+    errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.CONTENT.DATE_OF_ABSENCE_BEGIN_EMPTY });
+  }
+
+  if (validator.isEmpty(absentRequestBody.date_of_absence_end)) {
+    errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.CONTENT.DATE_OF_ABSENCE_END_EMPTY });
   }
 
   if (!requestedTime) {

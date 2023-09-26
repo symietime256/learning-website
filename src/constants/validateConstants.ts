@@ -6,7 +6,8 @@ export const REQUEST_VALIDATE = {
   CONTENT: {
     MAIN_POINT_EMPTY: 'Mainpoint is required',
     IS_ACCEPTED_EMPTY: 'Your approval is empty',
-    DATE_OF_ABSENCE_EMPTY: 'Date Of Absence is required',
+    DATE_OF_ABSENCE_BEGIN_EMPTY: 'The beginning Date Of Absence is required',
+    DATE_OF_ABSENCE_END_EMPTY: 'The finish Date Of Absence is required',
     REASON_EMPTY: 'Reason cannot left empty',
     IS_ACCEPTED_INVALID: 'Your approval is illegal',
     IS_ACCEPTED_EXISTED: 'This request were either approved or rejected, you cannot take action!',
@@ -23,21 +24,24 @@ export const isDateInvalidOrNot = function (dateString: string) {
   if (!isValidDate(dateString)) {
     return false;
   }
-  const [year, month, day] = dateString.split('/');
 
-  const parsedDate = new Date(+year, +month - 1, +day);
+  const [date, hourMinutes] = dateString.split(' ');
+  const [hour, minute] = hourMinutes.split(':');
+  const [year, month, day] = date.split('/');
+
+  const parsedDate = new Date(+year, +month - 1, +day, +hour, +minute);
   return parsedDate;
 };
 
 function isValidDate(dateString: string) {
   // First check for the pattern
-  if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) return false;
+  if (!/^\d{4}\/\d{1,2}\/\d{1,2}\s\d{1,2}:\d{2}$/.test(dateString)) return false;
 
   // Parse the date parts to integers
   const parts = dateString.split('/');
-  const day = parseInt(parts[1], 10);
-  const month = parseInt(parts[0], 10);
-  const year = parseInt(parts[2], 10);
+  const day = parseInt(parts[2], 10);
+  const month = parseInt(parts[1], 10);
+  const year = parseInt(parts[0], 10);
 
   // Check the ranges of month and year
   if (year < 1000 || year > 3000 || month == 0 || month > 12) return false;
