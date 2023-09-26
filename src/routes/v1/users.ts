@@ -5,9 +5,6 @@ import { checkJwt } from '@/middleware/checkJwt';
 import { checkRole } from '@/middleware/checkRole';
 import { validatorEdit } from '@/middleware/validation/users';
 import { ROLE_TYPE } from '@/typeorm/entities/users/types';
-import { validatorRequest } from '@/middleware/validation/request/validatorRequest';
-import { requestAbsent } from '@/controllers/request.controller/user/requestAbsent';
-import { checkAbsentRequest } from '@/controllers/request.controller/manager/viewAbsentRequest';
 
 const router = Router();
 
