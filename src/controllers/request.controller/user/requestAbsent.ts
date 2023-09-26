@@ -21,7 +21,7 @@ export const requestAbsent = async (req: Request, res: Response, next: NextFunct
 
     saveRequestContent(absentRequestRepository, requestAbsent);
 
-    res.customSuccess(200, 'Successfully created', requestAbsent);
+    res.customSuccess(201, 'Successfully created', requestAbsent);
   } catch (err) {
     const customError = new CustomError(400, 'Raw', 'Error', null, err);
     return next(customError);

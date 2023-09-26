@@ -7,7 +7,7 @@ import { requestViewWithIdFilter } from '@/services/request.service/viewRequest.
 import { requestAbsent } from '../user/requestAbsent';
 
 export const viewAbsentRequest = async (req: Request, res: Response, next: NextFunction) => {
-  const queryId = req.query.id;
+  const queryId = req.params.id;
 
   try {
     const absentRequestLists = await requestViewWithIdFilter(queryId);

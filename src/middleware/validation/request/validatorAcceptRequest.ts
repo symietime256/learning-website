@@ -20,7 +20,7 @@ export const validatorAcceptRequest = async (req: Request, res: Response, next: 
     errorsValidation.push({ accepted_status: REQUEST_VALIDATE.CONTENT.IS_ACCEPTED_INVALID });
   }
 
-  if (arrayAbsentRequestFromEnum.some((enumValue) => enumValue == 'PENDING')) {
+  if (arrayAbsentRequestFromEnum.some((enumValue) => enumValue == 'PENDING') && is_accepted == 'PENDING') {
     errorsValidation.push({ accepted_status: REQUEST_VALIDATE.CONTENT.PENDING_REQUEST_PROHIBIT });
   }
 

@@ -17,6 +17,7 @@ export const REQUEST_VALIDATE = {
   DATE: {
     CURRENT_TIME: current_time,
     INVALID_DATE: 'The date that user entered is invalid',
+    INVALID_PAST_REQUESTED_DATE: 'The date that user entered was in the past and no longer available',
     UNSUITABLE_END_DATE: 'The begin absent day is later than the end absent day',
   },
 };

@@ -10,6 +10,7 @@ export const validatorRequest = async (req: Request, res: Response, next: NextFu
   const absentRequestBody = req.body;
   const requestedTimeBegin = isDateInvalidOrNot(req.body.date_of_absence_begin);
   const requestedTimeEnd = isDateInvalidOrNot(req.body.date_of_absence_end);
+  const now = Date.now();
   // console.log(absentRequestBody);
   // console.log({
   //   mainLength: absentRequestBody.main_point.length,
@@ -36,7 +37,11 @@ export const validatorRequest = async (req: Request, res: Response, next: NextFu
     errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.DATE.INVALID_DATE });
   }
 
-  if (!(requestedTimeBegin.getTime > requestedTimeEnd.getTime)) {
+  if (requestedTimeBegin.getTime < now || requestedTimeEnd.getTime < now) {
+    errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.DATE.INVALID_PAST_REQUESTED_DATE });
+  }
+
+  if (requestedTimeBegin.getTime > requestedTimeEnd.getTime) {
     errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.DATE.UNSUITABLE_END_DATE });
   }
 

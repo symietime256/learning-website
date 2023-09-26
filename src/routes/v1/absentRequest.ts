@@ -13,16 +13,14 @@ import { handleAbsentRequest } from '@/controllers/request.controller/manager/ha
 
 const router = Router();
 
-router.get('/view-request', [checkJwt, checkRole([ROLE_TYPE.MANAGER], true)], viewAbsentRequest);
+router.get('/view', [checkJwt, checkRole([ROLE_TYPE.MANAGER], true)], viewAbsentRequest);
 
-router.post(
-  '/make-request',
-  [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR], true), validatorRequest],
-  requestAbsent,
-);
+router.get('/view/:id([a-z0-9A-Z-]+)', [checkJwt, checkRole([ROLE_TYPE.MANAGER], true)], viewAbsentRequest);
+
+router.post('', [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR], true), validatorRequest], requestAbsent);
 
 router.patch(
-  '/handle-request/:id([0-9]+)',
+  '/request-handler/:id([a-z0-9A-Z-]+)',
   [checkJwt, checkRole([ROLE_TYPE.MANAGER], true), validatorAcceptRequest],
   handleAbsentRequest,
 );

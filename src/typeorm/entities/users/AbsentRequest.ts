@@ -4,8 +4,8 @@ import { ABSENT_REQUEST, IIsAccepted } from '@/enum/requestEnums';
 
 @Entity('absent-request')
 export class AbsentRequest {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   main_point: string;

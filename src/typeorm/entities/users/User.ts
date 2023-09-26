@@ -6,8 +6,8 @@ import { AbsentRequest } from './AbsentRequest';
 import { Device } from './device';
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({
     unique: true,
