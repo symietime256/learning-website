@@ -8,11 +8,7 @@ export const borrowDevice = async (req: Request, res: Response) => {
   const device = req.device;
 
   try {
-    if (device.quantity === 0) {
-      return res.status(400).json('There are no more devices to borrow');
-    }
     if (device.quantity > 0) {
-      device.device_status = DEVICE_STATUS.AVAILABLE;
       device.quantity -= 1;
       if (device.quantity === 0) {
         device.device_status = DEVICE_STATUS.UNAVAILABLE;

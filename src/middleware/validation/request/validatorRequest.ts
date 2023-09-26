@@ -8,7 +8,8 @@ import { MAIN_POINT_MIN_CHAR, REASON_MAX_CHAR, REASON_MIN_CHAR } from '@/constan
 
 export const validatorRequest = async (req: Request, res: Response, next: NextFunction) => {
   const absentRequestBody = req.body;
-  const requestedTime = isDateInvalidOrNot(req.body.date_of_absence);
+  const requestedTimeBegin = isDateInvalidOrNot(req.body.date_of_absence_begin);
+  const requestedTimeEnd = isDateInvalidOrNot(req.body.date_of_absence_end);
   // console.log(absentRequestBody);
   // console.log({
   //   mainLength: absentRequestBody.main_point.length,
@@ -31,9 +32,12 @@ export const validatorRequest = async (req: Request, res: Response, next: NextFu
     errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.CONTENT.DATE_OF_ABSENCE_END_EMPTY });
   }
 
-  if (!requestedTime) {
+  if (!(requestedTimeBegin.parsedDate && requestedTimeEnd.parsedDate)) {
     errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.DATE.INVALID_DATE });
-    console.log(requestedTime);
+  }
+
+  if (!(requestedTimeBegin.getTime > requestedTimeEnd.getTime)) {
+    errorsValidation.push({ date_of_absence: REQUEST_VALIDATE.DATE.UNSUITABLE_END_DATE });
   }
 
   if (validator.isEmpty(absentRequestBody.reason)) {

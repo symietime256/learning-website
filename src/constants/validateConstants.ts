@@ -17,12 +17,16 @@ export const REQUEST_VALIDATE = {
   DATE: {
     CURRENT_TIME: current_time,
     INVALID_DATE: 'The date that user entered is invalid',
+    UNSUITABLE_END_DATE: 'The begin absent day is later than the end absent day',
   },
 };
 
 export const isDateInvalidOrNot = function (dateString: string) {
   if (!isValidDate(dateString)) {
-    return false;
+    return {
+      parsedDate: null,
+      getTime: null,
+    };
   }
 
   const [date, hourMinutes] = dateString.split(' ');
@@ -30,7 +34,12 @@ export const isDateInvalidOrNot = function (dateString: string) {
   const [year, month, day] = date.split('/');
 
   const parsedDate = new Date(+year, +month - 1, +day, +hour, +minute);
-  return parsedDate;
+  const getTime = parsedDate.getTime();
+
+  return {
+    parsedDate: parsedDate,
+    getTime: getTime,
+  };
 };
 
 function isValidDate(dateString: string) {
