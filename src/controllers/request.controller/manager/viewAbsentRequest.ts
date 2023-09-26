@@ -8,7 +8,6 @@ import { requestAbsent } from '../user/requestAbsent';
 
 export const viewAbsentRequest = async (req: Request, res: Response, next: NextFunction) => {
   const queryId = req.query.id;
-  console.log(queryId);
 
   try {
     const absentRequestLists = await requestViewWithIdFilter(queryId);
