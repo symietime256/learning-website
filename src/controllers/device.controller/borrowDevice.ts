@@ -3,6 +3,8 @@ import { getRepository } from 'typeorm';
 import { Device } from '@/typeorm/entities/users/device';
 import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
 import { User } from '@/typeorm/entities/users/User';
+import { DeviceUser } from '@/typeorm/entities/users/deviceUser';
+
 export const borrowDevice = async (req: Request, res: Response) => {
   const deviceRepository = getRepository(Device);
   const device = req.device;
@@ -16,7 +18,11 @@ export const borrowDevice = async (req: Request, res: Response) => {
       }
       const userRepository = getRepository(User);
       const user = await userRepository.findOne(userId);
-      device.user = user;
+      const deviceUserRepository = getRepository(DeviceUser);
+      const deviceUser = new DeviceUser();
+      deviceUser.user = user;
+      deviceUser.device = device;
+      await deviceUserRepository.save(deviceUser);
       await deviceRepository.save(device);
       return res.status(200).json('Device Borrowed Successfully');
     } else {

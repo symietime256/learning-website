@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Language } from './types';
 import { AbsentRequest } from './AbsentRequest';
-import { Device } from './device';
+import { DeviceUser } from './deviceUser';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
@@ -62,8 +62,8 @@ export class User {
   @OneToMany(() => AbsentRequest, (request) => request.user)
   requests: AbsentRequest[];
 
-  @OneToMany(() => Device, (device) => device.user)
-  devices: Device[];
+  @OneToMany(() => DeviceUser, (deviceUser) => deviceUser.user)
+  deviceUsers: DeviceUser[];
 
   setLanguage(language: Language) {
     this.language = language;
