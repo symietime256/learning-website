@@ -43,7 +43,6 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 
 app.use(errorHandler);
 const port = process.env.PORT || 4000;
-
 (async () => {
   await dbCreateConnection();
   app.listen(port, () => {
