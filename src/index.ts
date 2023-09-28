@@ -2,17 +2,23 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import fs from 'fs';
 import path from 'path';
+import swaggerUI from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
 
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import { docs } from './docs/index';
+import swaggerJSON from '../swaggerJSON.json';
 
 import './utils/response/customSuccess';
 import { errorHandler } from './middleware/errorHandler';
 import { getLanguage } from './middleware/getLanguage';
 import routes from './routes';
 import { dbCreateConnection } from './typeorm/dbCreateConnection';
+import swaggerDoc from './swagger';
+
 export const app = express();
 app.use(cors());
 app.use(helmet());
@@ -31,6 +37,7 @@ try {
 app.use(morgan('combined'));
 
 app.use('/', routes);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 
 app.use(errorHandler);
 
