@@ -1,12 +1,11 @@
+import { getRepository } from 'typeorm';
 import { Device } from '@/typeorm/entities/users/device';
 import { DeviceUser } from '@/typeorm/entities/users/deviceUser';
 import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
-import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 
-export const returnDevice = async (req: Request, res: Response) => {
+export const returnDeviceService = async (device: Device) => {
   const deviceRepository = getRepository(Device);
-  const device = req.device;
+
   try {
     if (device.id) {
       const deviceUserRepository = getRepository(DeviceUser);
@@ -17,12 +16,14 @@ export const returnDevice = async (req: Request, res: Response) => {
         device.device_status = DEVICE_STATUS.AVAILABLE;
         device.quantity += 1;
         await deviceRepository.save(device);
-        res.status(200).json('Device returned successfully');
+        return 'Device returned successfully';
       } else {
-        res.status(400).json('Device not borrowed by any user');
+        throw new Error('Device not borrowed by any user');
       }
+    } else {
+      throw new Error('Invalid device ID');
     }
   } catch (err) {
-    res.status(500).json(err);
+    throw err;
   }
 };

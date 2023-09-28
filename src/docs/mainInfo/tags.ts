@@ -1,3 +1,5 @@
 export const TAG = {
-  // ABSENT_REQUEST: { name: 'Absent-Request CRUD Operation' },
+  ABSENT_REQUEST: {
+    tags: { name: 'Absent-Request CRUD Operation' },
+  },
 };

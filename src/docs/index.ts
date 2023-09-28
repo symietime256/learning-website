@@ -1,13 +1,13 @@
 import { basicInformation } from './mainInfo/basicInfomation';
-import { serverURL } from './mainInfo/servers';
+import { SERVER } from './mainInfo/servers';
 import { TAG } from './mainInfo/tags';
-import { components } from './mainInfo/components';
+import { COMPONENTS } from './mainInfo/components';
 import { PathObject } from './absentRequest';
 
 export const docs = {
   ...basicInformation,
-  ...serverURL,
-  ...components,
+  ...SERVER,
+  ...COMPONENTS,
   ...TAG,
   ...PathObject,
 };

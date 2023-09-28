@@ -3,8 +3,8 @@ import {
   addDevice,
   listDevice,
   deleteDevice,
-  borrowDevice,
-  returnDevice,
+  borrowDeviceController,
+  returnDeviceController,
   editDevice,
 } from '@/controllers/device.controller';
 import { checkDeviceExistence } from '@/middleware/validation/device/checkDeviceExistence';
@@ -20,14 +20,14 @@ router.post(
   '/borrow',
   [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR, ROLE_TYPE.MANAGER])],
   checkDeviceExistence,
-  borrowDevice,
+  borrowDeviceController,
 );
 
 router.post(
   '/return',
   [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR, ROLE_TYPE.MANAGER])],
   checkDeviceExistence,
-  returnDevice,
+  returnDeviceController,
 );
 
 router.post('/edit-device', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], editDevice);

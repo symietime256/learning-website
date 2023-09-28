@@ -12,6 +12,7 @@ import morgan from 'morgan';
 import { docs } from './docs/index';
 import swaggerJSON from '../swaggerJSON.json';
 
+import swaggerUi from 'swagger-ui-express';
 import './utils/response/customSuccess';
 import { errorHandler } from './middleware/errorHandler';
 import { getLanguage } from './middleware/getLanguage';
@@ -20,6 +21,36 @@ import { dbCreateConnection } from './typeorm/dbCreateConnection';
 import swaggerDoc from './swagger';
 
 export const app = express();
+
+// const options = {
+//   definition: {
+//     openapi: '3.1.0',
+//     info: {
+//       title: 'LogRocket Express API with Swagger',
+//       version: '0.1.0',
+//       description: 'This is a simple CRUD API application made with Express and documented with Swagger',
+//       license: {
+//         name: 'MIT',
+//         url: 'https://spdx.org/licenses/MIT.html',
+//       },
+//       contact: {
+//         name: 'LogRocket',
+//         url: 'https://logrocket.com',
+//         email: 'info@email.com',
+//       },
+//     },
+//     servers: [
+//       {
+//         url: 'http://localhost:4000',
+//       },
+//     ],
+//   },
+//   apis: ['./routes/*.js'],
+// };
+
+// const specs = swaggerJSDoc(docs);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(docs));
+
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
@@ -37,12 +68,11 @@ try {
 app.use(morgan('combined'));
 
 app.use('/', routes);
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
+
+// app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 
 app.use(errorHandler);
-
 const port = process.env.PORT || 4000;
-
 (async () => {
   await dbCreateConnection();
   app.listen(port, () => {
