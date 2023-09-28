@@ -7,7 +7,7 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-
+import swaggerUi from 'swagger-ui-express';
 import './utils/response/customSuccess';
 import { errorHandler } from './middleware/errorHandler';
 import { getLanguage } from './middleware/getLanguage';
@@ -33,9 +33,7 @@ app.use(morgan('combined'));
 app.use('/', routes);
 
 app.use(errorHandler);
-
 const port = process.env.PORT || 4000;
-
 (async () => {
   await dbCreateConnection();
   app.listen(port, () => {

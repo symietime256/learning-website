@@ -1,14 +1,11 @@
-import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { Device } from '@/typeorm/entities/users/device';
-import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
 import { User } from '@/typeorm/entities/users/User';
 import { DeviceUser } from '@/typeorm/entities/users/deviceUser';
+import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
 
-export const borrowDevice = async (req: Request, res: Response) => {
+export const borrowDeviceService = async (device: Device, userId: string) => {
   const deviceRepository = getRepository(Device);
-  const device = req.device;
-  const userId = req.jwtPayload.id;
 
   try {
     if (device.quantity > 0) {
@@ -24,11 +21,11 @@ export const borrowDevice = async (req: Request, res: Response) => {
       deviceUser.device = device;
       await deviceUserRepository.save(deviceUser);
       await deviceRepository.save(device);
-      return res.status(200).json('Device Borrowed Successfully');
+      return 'Device Borrowed Successfully';
     } else {
-      return res.status(400).json('There are no more devices to borrow');
+      throw new Error('There are no more devices to borrow');
     }
   } catch (err) {
-    return res.status(500).json(err);
+    throw err;
   }
 };
