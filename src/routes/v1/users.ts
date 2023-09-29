@@ -10,7 +10,7 @@ const router = Router();
 
 router.get('/', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], list);
 
-router.get('/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER, ROLE_TYPE.HR], true)], show);
+router.get('/view/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER, ROLE_TYPE.HR], true)], show);
 
 router.patch(
   '/:id',
