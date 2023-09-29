@@ -1,16 +1,16 @@
 export const basicInformation = {
   openapi: '3.1.0',
   info: {
-    title: 'LogRocket Express API with Swagger',
+    title: 'HRM - Just-Engineer Training Project',
     version: '0.1.0',
-    description: 'This is a simple CRUD API application made with Express and documented with Swagger',
+    description: 'This is a simple HRM application made with Express and documented with Swagger',
     license: {
       name: 'MIT',
       url: 'https://spdx.org/licenses/MIT.html',
     },
     contact: {
-      name: 'LogRocket',
-      url: 'https://logrocket.com',
+      name: 'Internship Team',
+      url: 'https://www.facebook.com/profile.php?id=100032885076663',
       email: 'info@email.com',
     },
   },
