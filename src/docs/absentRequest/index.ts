@@ -1,13 +1,12 @@
 import viewAbsentRequestsBySwagger from './viewAbsentRequestsSWG';
 import viewAbsentRequestBySwagger from './viewAbsentRequestSWG';
 
-export const PathObject = {
-  paths: {
-    '/view': {
-      ...viewAbsentRequestsBySwagger,
-    },
-    '/view/{id}': {
-      ...viewAbsentRequestBySwagger,
-    },
+const PathAbsentRequest = {
+  '/absent-request/view': {
+    ...viewAbsentRequestsBySwagger,
+  },
+  '/absent-request/view/{id}': {
+    ...viewAbsentRequestBySwagger,
   },
 };
+export default PathAbsentRequest;

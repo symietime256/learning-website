@@ -8,15 +8,7 @@ const GET = {
     description: 'View absent-request from Employee and HR can provide information about Employee working status',
     operationId: 'viewAllRequest',
     parameters: [],
-    // requestBody: {
-    //   content: {
-    //     'application/json': {
-    //       schema: {
-    //         $ref: '#/components/schemas/viewAbsentRequest',
-    //       },
-    //     },
-    //   },
-    // },
+
     responses: {
       200: {
         description: '**GET USER SUCCESFULLY**',

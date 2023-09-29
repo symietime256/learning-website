@@ -16,22 +16,8 @@ import { errorHandler } from './middleware/errorHandler';
 import { getLanguage } from './middleware/getLanguage';
 import routes from './routes';
 import { dbCreateConnection } from './typeorm/dbCreateConnection';
-import { Server as SocketServer } from 'socket.io';
 
 export const app = express();
-
-const options = {
-  swaggerOptions: {
-    authAction: {
-      JWT: {
-        name: 'JWT',
-        schema: { type: 'apiKey', in: 'header', name: 'Authorization', description: '' },
-        value: 'Bearer <JWT>',
-      },
-    },
-  },
-};
-// const specs = swaggerJSDoc(docs);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(docs));
 app.use(cors());
@@ -55,18 +41,9 @@ app.use('/', routes);
 app.use(errorHandler);
 const port = process.env.PORT || 4000;
 
-const server = http.createServer(app);
-const io = new SocketServer(server);
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
-
-io.on('connection', (socket) => {
-  console.log('user connected');
-});
 (async () => {
   await dbCreateConnection();
-  server.listen(port, () => {
+  app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
 })();

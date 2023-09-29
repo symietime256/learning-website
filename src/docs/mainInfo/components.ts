@@ -161,6 +161,21 @@ export const COMPONENTS = {
           },
         },
       },
+      authentication: {
+        type: 'Object',
+        properties: {
+          email: {
+            type: 'string',
+            example: 'duongdaoq@gmail.com',
+            description: 'Email can not null',
+          },
+          password: {
+            type: 'string',
+            example: 'Duck130603@',
+            description: 'Password can not null',
+          },
+        },
+      },
     },
   },
 };
