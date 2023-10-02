@@ -8,6 +8,32 @@ export const COMPONENTS = {
       },
     },
     schemas: {
+      EditUserInfo: {
+        type: 'object',
+        properties: {
+          username: {
+            type: `string`,
+            description: `The unique name of the account`,
+            example: `ducminh12345`,
+          },
+          name: {
+            type: `string`,
+            description: `The full name of the account owner`,
+            example: `NDM`,
+          },
+        },
+      },
+      HandleAbsentRequest: {
+        type: 'object',
+        properties: {
+          is_accepted: {
+            type: `string`,
+            enum: [`APPROVED`, `PENDING`, `REJECTED`],
+            description: `The end date of absent period`,
+            example: `APPROVED`,
+          },
+        },
+      },
       RequestAbsent: {
         type: 'object',
         properties: {

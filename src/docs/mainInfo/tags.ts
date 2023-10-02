@@ -8,7 +8,7 @@ export const TAG = {
   DEVICE: {
     tags: { name: 'Device' },
   },
-  USER: {
-    tags: { name: 'User ' },
+  USERS: {
+    tags: { name: 'User' },
   },
 };
