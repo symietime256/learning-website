@@ -5,10 +5,9 @@ import PathUser from './user';
 
 export const PathObject = {
   paths: {
-    ...PathAbsentRequest,
     ...PathAuth,
+    ...PathAbsentRequest,
     ...PathUser,
     ...PathDevice,
-    ...PathUser,
   },
 };

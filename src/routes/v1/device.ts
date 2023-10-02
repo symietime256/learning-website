@@ -17,7 +17,7 @@ router.post('/add', [checkJwt, checkRole([ROLE_TYPE.MANAGER], true)], addDevice)
 router.get('/', [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR, ROLE_TYPE.MANAGER])], listDevice);
 
 router.post(
-  '/borrow/:id',
+  '/:id',
   [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR, ROLE_TYPE.MANAGER])],
   checkDeviceExistence,
   borrowDeviceController,
@@ -30,7 +30,7 @@ router.post(
   returnDeviceController,
 );
 
-router.patch('/edit-device/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], editDevice);
+router.patch('/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], editDevice);
 
-router.delete('/delete/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], checkDeviceExistence, deleteDevice);
+router.delete('/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], checkDeviceExistence, deleteDevice);
 export default router;

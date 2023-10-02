@@ -10,10 +10,8 @@ const PathDevice = {
   '/devices/': {
     ...allDeviceSWG,
   },
-  '/devices/delete/{id}': {
+  '/devices/{id}': {
     ...deleteDeviceSWG,
-  },
-  '/devices/borrow/{id}': {
     ...borrowDeviceSWG,
   },
   '/devices/return/{id}': {

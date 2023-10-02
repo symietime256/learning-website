@@ -9,6 +9,6 @@ export const TAG = {
     tags: { name: 'Device' },
   },
   USER: {
-    tags: { name: 'User ' },
+    tags: { name: 'User' },
   },
 };
