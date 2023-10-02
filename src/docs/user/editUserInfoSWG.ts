@@ -6,7 +6,7 @@ const PATCH = {
     summary:
       `Edit by either normal user or manager, normal user like HR and EMPLOYEE can only edit their account infomation, while Manager can take` +
       `action on every account as well as they have their id.`,
-    tags: [TAG.USERS.tags.name],
+    tags: [TAG.USER.tags.name],
     description: 'Edit by either normal user or manager',
     operationId: 'editUserInfo',
     parameters: [

@@ -1,19 +1,15 @@
+import editUserInfoBySwagger from './editUserInfoSWG';
 import getAllUserSWG from './getAllUserSWG';
 import getUserByIdSWG from './getUserByIdSWG';
 import deleteUserSWG from './deleteUserSWG';
-import editUserSWG from './editUserSWG';
 const PathUser = {
   '/users/': {
     ...getAllUserSWG,
   },
-  '/users/view/{id}': {
+  '/users/{id}': {
     ...getUserByIdSWG,
-  },
-  '/users/delete/{id}': {
     ...deleteUserSWG,
-  },
-  '/users/edit/{id}': {
-    ...editUserSWG,
+    ...editUserInfoBySwagger,
   },
 };
 export default PathUser;
