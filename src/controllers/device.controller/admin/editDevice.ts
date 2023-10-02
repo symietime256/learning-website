@@ -1,22 +1,28 @@
+import { CustomError } from './../../../utils/response/custom-error/CustomError';
 import { Device } from '@/typeorm/entities/users/device';
 import { getRepository } from 'typeorm';
-import { Request, Response } from 'express';
-export const editDevice = async (req: Request, res: Response) => {
-  const { name_device, device_status, description, quantity } = req.body;
+import { NextFunction, Request, Response } from 'express';
+export const editDevice = async (req: Request, res: Response, next: NextFunction) => {
+  const id = req.params.id;
+  const editDevice = req.body;
   const deviceRepository = getRepository(Device);
-  const id = req.body.id;
-
   try {
-    const updatedDevice = {
-      name_device: name_device,
-      device_status: device_status,
-      description: description,
-      quantity: quantity,
-    };
-    const deviceIdUpdate = id;
-    await deviceRepository.update(deviceIdUpdate, updatedDevice);
-    res.status(200).json(updatedDevice);
+    const device = await deviceRepository.findOne({ where: { id } });
+    if (!device) {
+      const customError = new CustomError(404, 'General', 'Device not found');
+      return next(customError);
+    }
+    const newDevice = { ...device, ...editDevice };
+    newDevice.id = id;
+    try {
+      await deviceRepository.save(newDevice);
+      res.customSuccess(200, 'Device successfully saved.', newDevice);
+    } catch (err) {
+      const customError = new CustomError(409, 'Raw', null, err);
+      return next(customError);
+    }
   } catch (err) {
-    res.status(500).json(err);
+    const customError = new CustomError(400, 'Raw', 'Error', null, err);
+    return next(customError);
   }
 };

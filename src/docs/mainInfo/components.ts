@@ -1,4 +1,3 @@
-import { register } from './../../controllers/auth.controller/register';
 export const COMPONENTS = {
   components: {
     securitySchemes: {
@@ -46,6 +45,26 @@ export const COMPONENTS = {
             type: `string`,
             description: `JWT error`,
             example: `You can't view the list of requests without authorization`,
+          },
+        },
+      },
+      ErrorCode404: {
+        type: 'Object',
+        properties: {
+          httpStatusCode: {
+            type: 'number',
+            description: 'HTTP status code',
+            example: 404,
+          },
+          typeError: {
+            type: 'string',
+            description: 'Type of error',
+            example: 'Raw',
+          },
+          message: {
+            type: 'string',
+            description: 'Not Found',
+            example: '404 Not Found',
           },
         },
       },
@@ -224,6 +243,51 @@ export const COMPONENTS = {
             type: 'string',
             example: 'Duck130603@',
             description: 'Please confirm password',
+          },
+        },
+      },
+      user: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            example: 'e46fcaa5-cf99-423a-96c0-c378858aeb84',
+            description: 'uuid',
+          },
+          email: {
+            type: 'string',
+            example: 'duongdaoq@gmail.com',
+            description: 'Email can not null',
+          },
+          password: {
+            type: 'string',
+            example: '$2a$08$8jG6OqH.IfpJqkDuFxV9c.Tm07GglOFIjQQgo47tUIGcwGtrcgS1S',
+            description: 'Password can not null',
+          },
+          username: {
+            type: 'string',
+            example: '',
+            description: 'Username can be null',
+          },
+          name: {
+            type: 'string',
+            example: 'Dao Quang Duong',
+            description: 'Name can be null',
+          },
+          phone_number: {
+            type: 'number',
+            example: '0943192828',
+            description: 'Phone Number can be null',
+          },
+          address: {
+            type: 'string',
+            examlple: '',
+            description: 'Address can be null',
+          },
+          role: {
+            type: 'enum',
+            example: 'MANAGER',
+            description: 'Role can not null',
           },
         },
       },

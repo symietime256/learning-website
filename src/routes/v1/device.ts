@@ -30,7 +30,7 @@ router.post(
   returnDeviceController,
 );
 
-router.post('/edit-device', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], editDevice);
+router.patch('/edit-device/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], editDevice);
 
 router.delete('/delete/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], checkDeviceExistence, deleteDevice);
 export default router;

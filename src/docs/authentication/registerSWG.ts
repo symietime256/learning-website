@@ -33,18 +33,17 @@ const POST = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/rêgister',
+              $ref: '#/components/schemas/register',
             },
           },
         },
       },
       400: {
-        description: {
-          content: {
-            'application/json': {
-              schema: {
-                $ref: `#/components/schemas/ErrorCode400`,
-              },
+        description: '**BAD REQUEST**',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: `#/components/schemas/ErrorCode400`,
             },
           },
         },

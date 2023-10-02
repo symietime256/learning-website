@@ -26,7 +26,7 @@ const GET = {
 
     responses: {
       200: {
-        description: '**GET USER SUCCESFULLY**',
+        description: '**GET USER SUCCESSFULLY**',
         content: {
           'application/json': {
             schema: {

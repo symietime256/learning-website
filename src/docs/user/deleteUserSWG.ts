@@ -1,13 +1,11 @@
 import { TAG } from '../mainInfo/tags';
-
 const DELETE = {
   delete: {
     security: [{ bearerAuth: [] }],
-
-    summary: `Delete a device`,
-    tags: [TAG.DEVICE.tags.name],
-    description: 'Delete a device',
-    operationId: 'viewDeleteDevice',
+    summary: 'Delete a user',
+    tags: [TAG.USER.tags.name],
+    description: 'Delete a user',
+    operationId: 'viewDeleteUser',
     parameters: [
       {
         name: 'id',
@@ -17,13 +15,13 @@ const DELETE = {
           description: 'The tracking information for id',
           default: '',
         },
-        description: 'Fields that filtered the request only by DeviceID',
+        description: 'Fields that filtered the request only by UserID',
         required: true,
       },
     ],
     responses: {
       200: {
-        description: 'Delete device successfully',
+        description: 'Delete user successfully',
       },
 
       400: {
@@ -47,7 +45,18 @@ const DELETE = {
           },
         },
       },
+      404: {
+        description: 'User id does not exist',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/components/schemas/ErrorCode404',
+            },
+          },
+        },
+      },
     },
   },
 };
+
 export default DELETE;

@@ -13,11 +13,11 @@ router.get('/', [checkJwt, checkRole([ROLE_TYPE.MANAGER])], list);
 router.get('/view/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER, ROLE_TYPE.HR], true)], show);
 
 router.patch(
-  '/:id',
+  '/edit/:id',
   [checkJwt, checkRole([ROLE_TYPE.MANAGER, ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR], true), validatorEdit],
   edit,
 );
 
-router.delete('/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER], true)], destroy);
+router.delete('/delete/:id', [checkJwt, checkRole([ROLE_TYPE.MANAGER], true)], destroy);
 
 export default router;
