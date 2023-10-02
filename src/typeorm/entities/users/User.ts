@@ -14,6 +14,10 @@ export class User {
   })
   email: string;
 
+  @Column({
+    nullable: true,
+  })
+  employeeId: string;
   @Column()
   password: string;
 
