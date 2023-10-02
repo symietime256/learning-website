@@ -11,13 +11,6 @@ const GET = {
     responses: {
       200: {
         description: '------LIST OF USER--------',
-        content: {
-          'application/json': {
-            schema: {
-              $ref: '#/components/schemas/user',
-            },
-          },
-        },
       },
       401: {
         description: '**UNAUTHORIZED**',

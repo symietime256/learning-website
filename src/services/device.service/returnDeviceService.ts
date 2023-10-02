@@ -3,10 +3,11 @@ import { Device } from '@/typeorm/entities/users/device';
 import { DeviceUser } from '@/typeorm/entities/users/deviceUser';
 import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
 
-export const returnDeviceService = async (device: Device) => {
+export const returnDeviceService = async (deviceId: string) => {
   const deviceRepository = getRepository(Device);
 
   try {
+    const device = await deviceRepository.findOne(deviceId);
     if (device.id) {
       const deviceUserRepository = getRepository(DeviceUser);
       const deviceUser = await deviceUserRepository.findOne({ where: { device: device } });

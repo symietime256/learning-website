@@ -4,10 +4,11 @@ import { User } from '@/typeorm/entities/users/User';
 import { DeviceUser } from '@/typeorm/entities/users/deviceUser';
 import { DEVICE_STATUS } from '@/typeorm/entities/users/types';
 
-export const borrowDeviceService = async (device: Device, userId: string) => {
+export const borrowDeviceService = async (deviceId: string, userId: string) => {
   const deviceRepository = getRepository(Device);
 
   try {
+    const device = await deviceRepository.findOne(deviceId);
     if (device.quantity > 0) {
       device.quantity -= 1;
       if (device.quantity === 0) {

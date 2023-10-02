@@ -2,6 +2,7 @@ import { TAG } from '../mainInfo/tags';
 
 const POST = {
   post: {
+    security: [{ bearerAuth: [] }],
     summary: `Add new device by manager`,
     tags: [TAG.DEVICE.tags.name],
     description: 'Add new device',
@@ -30,12 +31,11 @@ const POST = {
         description: 'Add device successfully',
       },
       400: {
-        description: {
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/ErrorCode400',
-              },
+        description: '**BAD REQUEST**',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/components/schemas/ErrorCode400',
             },
           },
         },
@@ -43,4 +43,5 @@ const POST = {
     },
   },
 };
+
 export default POST;

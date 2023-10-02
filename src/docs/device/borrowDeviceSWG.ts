@@ -3,10 +3,10 @@ import { TAG } from '../mainInfo/tags';
 const POST = {
   post: {
     security: [{ bearerAuth: [] }],
-    summary: 'Return a device',
+    summary: 'Borrow a device',
     tags: [TAG.DEVICE.tags.name],
-    description: 'Return a device',
-    operationId: 'viewReturnDevice',
+    description: 'Borrow a device',
+    operationId: 'viewBorrowDevice',
     parameters: [
       {
         name: 'id',
@@ -22,7 +22,7 @@ const POST = {
     ],
     responses: {
       200: {
-        description: 'Return device successfully',
+        description: 'Borrow device successfully',
       },
 
       404: {

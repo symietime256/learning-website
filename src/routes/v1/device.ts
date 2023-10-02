@@ -17,14 +17,14 @@ router.post('/add', [checkJwt, checkRole([ROLE_TYPE.MANAGER], true)], addDevice)
 router.get('/', [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR, ROLE_TYPE.MANAGER])], listDevice);
 
 router.post(
-  '/borrow',
+  '/borrow/:id',
   [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR, ROLE_TYPE.MANAGER])],
   checkDeviceExistence,
   borrowDeviceController,
 );
 
 router.post(
-  '/return',
+  '/return/:id',
   [checkJwt, checkRole([ROLE_TYPE.EMPLOYEE, ROLE_TYPE.HR, ROLE_TYPE.MANAGER])],
   checkDeviceExistence,
   returnDeviceController,

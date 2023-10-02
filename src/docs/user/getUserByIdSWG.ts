@@ -14,8 +14,7 @@ const GET = {
         schema: {
           type: 'string',
           description: 'The tracking information for id',
-          default: 'e9d7c799-6dd6-48af-823a-7434474fea5c',
-          example: 'e9d7c799-6dd6-48af-823a-7434474fea5c',
+          default: '',
         },
         description: 'Fields that filtered the request only by UserId',
         required: true,

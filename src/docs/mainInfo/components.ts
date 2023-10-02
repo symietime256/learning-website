@@ -252,27 +252,27 @@ export const COMPONENTS = {
         properties: {
           id: {
             type: 'string',
-            example: 'cb2254b9-b7e0-4592-b8ae-757b14701cb0',
+            example: '',
             description: 'uuid',
           },
           name_device: {
             type: 'string',
-            example: 'Iphone 15',
+            example: '',
             description: 'Name device can not null',
           },
           device_status: {
             type: 'enum',
-            example: 'AVAILABLE',
+            example: '',
             description: 'Available or Unavailable',
           },
           description: {
             type: 'string',
-            example: 'Pro max',
+            example: '',
             description: 'Can null',
           },
           quantity: {
             type: 'number',
-            example: '10',
+            example: '',
             description: 'Quantity can not null',
           },
         },
@@ -282,17 +282,17 @@ export const COMPONENTS = {
         properties: {
           email: {
             type: 'string',
-            example: 'duongdaoq@gmail.com',
+            example: '',
             description: 'Username can not null',
           },
           password: {
             type: 'string',
-            example: 'Duck130603@',
+            example: '',
             description: 'Password can not null',
           },
           passwordConfirm: {
             type: 'string',
-            example: 'Duck130603@',
+            example: '',
             description: 'Please confirm password',
           },
         },
@@ -302,17 +302,17 @@ export const COMPONENTS = {
         properties: {
           id: {
             type: 'string',
-            example: 'e46fcaa5-cf99-423a-96c0-c378858aeb84',
+            example: '',
             description: 'uuid',
           },
           email: {
             type: 'string',
-            example: 'duongdaoq@gmail.com',
+            example: '',
             description: 'Email can not null',
           },
           password: {
             type: 'string',
-            example: '$2a$08$8jG6OqH.IfpJqkDuFxV9c.Tm07GglOFIjQQgo47tUIGcwGtrcgS1S',
+            example: '',
             description: 'Password can not null',
           },
           username: {
@@ -322,23 +322,43 @@ export const COMPONENTS = {
           },
           name: {
             type: 'string',
-            example: 'Dao Quang Duong',
+            example: '',
             description: 'Name can be null',
           },
           phone_number: {
             type: 'number',
-            example: '0943192828',
+            example: '',
             description: 'Phone Number can be null',
           },
           address: {
             type: 'string',
-            examlple: '',
+            example: '',
             description: 'Address can be null',
           },
           role: {
             type: 'enum',
-            example: 'MANAGER',
+            example: '',
             description: 'Role can not null',
+          },
+        },
+      },
+      device_user: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            default: '',
+            description: 'uuid',
+          },
+          user_id: {
+            type: 'string',
+            default: '',
+            description: 'uuid user borrow',
+          },
+          device_id: {
+            type: 'string',
+            default: '',
+            description: 'uuid device',
           },
         },
       },
