@@ -2,8 +2,6 @@ import { ROLE_TYPE } from '@/typeorm/entities/users/types';
 import bcrypt from 'bcryptjs';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Language } from './types';
-import { AbsentRequest } from './AbsentRequest';
-import { DeviceUser } from './deviceUser';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
@@ -62,13 +60,6 @@ export class User {
   @Column()
   @UpdateDateColumn()
   updated_at: Date;
-
-  @OneToMany(() => AbsentRequest, (request) => request.user)
-  requests: AbsentRequest[];
-
-  @OneToMany(() => DeviceUser, (deviceUser) => deviceUser.user)
-  deviceUsers: DeviceUser[];
-
   setLanguage(language: Language) {
     this.language = language;
   }

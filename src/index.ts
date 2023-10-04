@@ -3,7 +3,6 @@ import 'reflect-metadata';
 import fs from 'fs';
 import path from 'path';
 import swaggerUI from 'swagger-ui-express';
-import swaggerJSDoc from 'swagger-jsdoc';
 
 import cors from 'cors';
 import express from 'express';
@@ -17,7 +16,6 @@ import { errorHandler } from './middleware/errorHandler';
 import { getLanguage } from './middleware/getLanguage';
 import routes from './routes';
 import { dbCreateConnection } from './typeorm/dbCreateConnection';
-import swaggerDoc from './swagger';
 
 export const app = express();
 
@@ -39,7 +37,6 @@ try {
 app.use(morgan('combined'));
 
 app.use('/', routes);
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 
 app.use(errorHandler);
 const port = process.env.PORT || 4000;
